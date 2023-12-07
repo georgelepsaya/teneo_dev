@@ -20,6 +20,6 @@ async def root(request: Request):
 
 @app.get("/users")
 async def users(request: Request, db: Session = Depends(get_db)):
-    users = db.query(models.User).all()
-    context = {"request": request, "users": users}
+    all_users = db.query(models.User).all()
+    context = {"request": request, "users": all_users}
     return templates.TemplateResponse("users.html", context)

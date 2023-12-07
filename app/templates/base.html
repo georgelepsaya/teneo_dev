@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teneo</title>
+    <link href="{{ url_for('static', path='/css/output.css') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <header class="bg-purple-700 p-4 mb-16">
+        <nav class="container mx-auto flex items-center justify-between">
+            <h1><a href="/" class="text-white text-3xl font-semibold">Teneo</a></h1>
+            <ul class="flex space-x-4">
+                <li><a href="/users" class="text-white hover:text-blue-200">Users</a></li>
+                <li><a href="#" class="text-white hover:text-blue-200">Goals</a></li>
+                <li><a href="#" class="text-white hover:text-blue-200">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    <!-- Default content, can be empty -->
+    {% endblock %}
+
+</body>
+</html>
