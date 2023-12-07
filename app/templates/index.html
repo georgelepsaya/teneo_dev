@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teneo</title>
+    <link href="{{ url_for('static', path='/css/output.css') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <header class="bg-purple-700 p-4 mb-16">
+        <nav class="container mx-auto flex items-center justify-between">
+            <h1><a href="/" class="text-white text-3xl font-semibold">Teneo</a></h1>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="text-white hover:text-blue-200">Users</a></li>
+                <li><a href="#" class="text-white hover:text-blue-200">Goals</a></li>
+                <li><a href="#" class="text-white hover:text-blue-200">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto mt-8">
+        <section class="text-center">
+            <h1 class="text-4xl font-bold">Welcome to <span class="text-purple-700">Teneo</span></h1>
+            <p class="mt-4 text-2xl text-gray-600">Achieve Goals with likeminded people</p>
+        </section>
+        <section class="mt-16">
+            <h2 class="text-2xl font-semibold text-center">Get Started in 3 Steps</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <img src="{{ url_for('static', path='/images/register.svg') }}" alt="Step 1 - Register" class="w-48 h-48 mx-auto mb-4">
+                    <h3 class="text-xl text-center font-semibold">Register and share your interests</h3>
+                    <p class="text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor gravida urna in mollis.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <img src="{{ url_for('static', path='/images/goal.svg') }}" alt="Step 2 - Set Goal" class="w-48 h-48 mx-auto mb-4">
+                    <h3 class="text-xl text-center font-semibold">Create Goals</h3>
+                    <p class="text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor gravida urna in mollis.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <img src="{{ url_for('static', path='/images/connect.svg') }}" alt="Step 3 - Connect" class="w-48 h-48 mx-auto mb-4">
+                    <h3 class="text-xl text-center font-semibold">Connect with people</h3>
+                    <p class="text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor gravida urna in mollis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-16 text-center">
+            <div class="space-x-4">
+                <a href="/register" class="border-purple-700 border-2 hover:text-white hover:bg-purple-700 text-lg text-purple-700 px-4 py-2 rounded-md transition duration-300 ease-in-out">Register</a>
+                <a href="/login" class="border-gray-700 border-2 hover:text-white hover:bg-gray-700 text-lg text-gray-700 px-4 py-2 rounded-md transition duration-300 ease-in-out">Login</a>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
