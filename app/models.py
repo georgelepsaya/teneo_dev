@@ -11,3 +11,5 @@ class User(Base):
     bio = Column(Text)
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
+
+
