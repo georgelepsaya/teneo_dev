@@ -6,55 +6,75 @@
 {% block content %}
 <main class="container mx-auto mt-8">
     <div class="min-h-screen flex flex-col">
-            <div class="container max-w-sm mx-auto flex-1 flex flex-col mt-10 items-center px-2">
-                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 class="mb-8 text-3xl text-center">Register</h1>
+    <div class="container max-w-sm mx-auto flex-1 flex flex-col mt-10 items-center px-2">
+        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+
+            <!-- Start of the form -->
+            <form id="register-form" action="/register" method="post">
+                <h1 class="mb-8 text-3xl text-center">Register</h1>
+
+                <div class="mb-4">
                     <input
                         type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
+                        class="block border border-grey-light w-full p-3 rounded"
                         name="username"
-                        placeholder="username" />
+                        placeholder="Username" required />
+                    {% if errors.get("username") %}
+                        <span class="text-sm text-red-600">{{ errors["username"] }}</span>
+                    {% endif %}
+                </div>
 
+                <div class="mb-4">
                     <input
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
+                        type="email"
+                        class="block border border-grey-light w-full p-3 rounded"
                         name="email"
-                        placeholder="Email" />
+                        placeholder="Email" required />
+                    {% if errors.get("email") %}
+                        <span class="text-sm text-red-600">{{ errors["email"] }}</span>
+                    {% endif %}
+                </div>
 
+                <div class="mb-4">
                     <input
                         type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
+                        class="block border border-grey-light w-full p-3 rounded"
                         name="password"
-                        placeholder="Password" />
+                        placeholder="Password" required />
+                    {% if errors.get("password") %}
+                        <span class="text-sm text-red-600">{{ errors["password"] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
                     <input
                         type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
+                        class="block border border-grey-light w-full p-3 rounded"
                         name="confirm_password"
-                        placeholder="Confirm Password" />
-
-                    <button
-                        type="submit"
-                        class="w-full text-center py-3 rounded border-2 border-purple-600 font-semibold text-purple-600 hover:text-white transition hover:bg-purple-600 focus:outline-none my-1"
-                    >Create Account</button>
-
-<!--                    <div class="text-center text-sm text-grey-dark mt-4">-->
-<!--                        By signing up, you agree to the-->
-<!--                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">-->
-<!--                            Terms of Service-->
-<!--                        </a> and-->
-<!--                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">-->
-<!--                            Privacy Policy-->
-<!--                        </a>-->
-<!--                    </div>-->
+                        placeholder="Confirm Password" required />
+                    {% if errors.get("confirm_password") %}
+                        <span class="text-sm text-red-600">{{ errors["confirm_password"] }}</span>
+                    {% endif %}
                 </div>
 
-                <div class="text-grey-dark mt-6">
-                    Already have an account?
-                    <a class="no-underline border-b border-blue text-blue" href="../login/">
-                        Log in
-                    </a>.
-                </div>
-            </div>
+                <button
+                    type="submit"
+                    class="w-full text-center py-3 rounded border-2 border-purple-600 font-semibold text-purple-600 hover:text-white transition hover:bg-purple-600 focus:outline-none my-1"
+                >Create Account</button>
+            </form>
+            <!-- End of the form -->
+
         </div>
+
+        <div class="text-grey-dark mt-6">
+            Already have an account?
+            <a class="no-underline border-b border-blue text-blue" href="../login/">
+                Log in
+            </a>.
+        </div>
+    </div>
+</div>
+
 </main>
+
 {% endblock %}

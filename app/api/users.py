@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Request, HTTPException, status
+from fastapi import APIRouter, Depends, Request, HTTPException, status, Form
 from sqlalchemy.orm import Session
 from fastapi.templating import Jinja2Templates
 from ..database import get_db
@@ -19,20 +19,39 @@ async def get_users(request: Request, db: Session = Depends(get_db)):
 
 
 @router.post("/register")
-async def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    # check if the user already exists
-    db_user = crud.get_user_by_email(db, email=user.email)
-    if db_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail="Email already registered")
+async def create_user(request: Request,
+                      username: str = Form(...),
+                      email: str = Form(...),
+                      password: str = Form(...),
+                      confirm_password: str = Form(...),
+                      db: Session = Depends(get_db)):
+
+    errors = {}
+
+    # Username validation
+    if crud.get_user_by_username(db, username=username):
+        errors["username"] = "Username already in use"
+
+    # Email validation
+    if crud.get_user_by_email(db, email=email):
+        errors["email"] = "Email already registered"
+
+    # Password confirmation validation
+    if password != confirm_password:
+        errors["confirm_password"] = "Passwords do not match"
+
+    # Password complexity validation
+    if not utils.is_password_valid(password):
+        errors[
+            "password"] = "Password must be at least 8 characters and include a mix of upper and lower case letters and numbers"
+
+    # If there are errors, return to the registration page with errors
+    if errors:
+        return templates.TemplateResponse("register.html", {"request": request, "errors": errors})
 
     # hash the user's password and create a new user record
-    hashed_password = utils.hash_password(user.password)
-    user_dict = user.model_dump()
-    print(user_dict)
-    user_dict['hashed_password'] = hashed_password
-    del user_dict['password']
-    new_user = models.User(**user_dict)
+    hashed_password = utils.hash_password(password)
+    new_user = models.User(username=username, email=email, hashed_password=hashed_password)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
@@ -41,5 +60,5 @@ async def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
 @router.get("/register")
 async def register(request: Request, db: Session = Depends(get_db)):
-    context = {"request": request}
+    context = {"request": request, "errors": {}}
     return templates.TemplateResponse("register.html", context)
