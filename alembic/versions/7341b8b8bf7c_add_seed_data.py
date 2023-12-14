@@ -8,7 +8,6 @@ Create Date: 2023-12-13 18:07:43.534163
 from typing import Sequence, Union
 
 from alembic import op
-import sqlalchemy as sa
 from sqlalchemy.sql import table, column
 from sqlalchemy import String, Text
 

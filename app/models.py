@@ -13,3 +13,8 @@ class User(Base):
     hashed_password = Column(String)
 
 
+class Tag(Base):
+    __tablename__ = 'tags'
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, unique=True, index=True)
