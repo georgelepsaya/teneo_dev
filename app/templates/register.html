@@ -18,7 +18,9 @@
                         type="text"
                         class="block border border-grey-light w-full p-3 rounded"
                         name="username"
-                        placeholder="Username" required />
+                        placeholder="Username"
+                        value="{{ form_data.username if form_data else '' }}"
+                        required />
                     {% if errors.get("username") %}
                         <span class="text-sm text-red-600">{{ errors["username"] }}</span>
                     {% endif %}
@@ -29,7 +31,9 @@
                         type="email"
                         class="block border border-grey-light w-full p-3 rounded"
                         name="email"
-                        placeholder="Email" required />
+                        placeholder="Email"
+                        value="{{ form_data.email if form_data else '' }}"
+                        required />
                     {% if errors.get("email") %}
                         <span class="text-sm text-red-600">{{ errors["email"] }}</span>
                     {% endif %}

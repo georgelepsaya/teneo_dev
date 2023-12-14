@@ -47,7 +47,10 @@ async def create_user(request: Request,
 
     # If there are errors, return to the registration page with errors
     if errors:
-        return templates.TemplateResponse("register.html", {"request": request, "errors": errors})
+        return templates.TemplateResponse("register.html", {"request": request,
+                                                            "errors": errors,
+                                                            "form_data": {"username": username,
+                                                                          "email": email}})
 
     # hash the user's password and create a new user record
     hashed_password = utils.hash_password(password)
@@ -60,5 +63,5 @@ async def create_user(request: Request,
 
 @router.get("/register")
 async def register(request: Request, db: Session = Depends(get_db)):
-    context = {"request": request, "errors": {}}
+    context = {"request": request, "errors": {}, "form_data": {}}
     return templates.TemplateResponse("register.html", context)
