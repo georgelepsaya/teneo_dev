@@ -63,5 +63,6 @@ async def create_user(request: Request,
 
 @router.get("/register")
 async def register(request: Request, db: Session = Depends(get_db)):
-    context = {"request": request, "errors": {}, "form_data": {}}
+    all_tags = db.query(models.Tag).all()
+    context = {"request": request, "errors": {}, "form_data": {}, "tags": all_tags}
     return templates.TemplateResponse("register.html", context)
