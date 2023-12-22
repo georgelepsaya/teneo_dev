@@ -3,6 +3,8 @@ from sqlalchemy.orm import Session
 from fastapi.templating import Jinja2Templates
 from ..database import get_db
 from .. import models, schemas, crud, utils
+from typing import List
+import json
 
 
 router = APIRouter()
@@ -24,7 +26,10 @@ async def create_user(request: Request,
                       email: str = Form(...),
                       password: str = Form(...),
                       confirm_password: str = Form(...),
+                      tags: List[str] = Form([]),
                       db: Session = Depends(get_db)):
+
+    print(tags)
 
     errors = {}
 
