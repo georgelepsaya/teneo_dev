@@ -81,3 +81,9 @@ async def register(request: Request, db: Session = Depends(get_db)):
     all_tags = db.query(models.Tag).all()
     context = {"request": request, "errors": {}, "form_data": {}, "tags": all_tags}
     return templates.TemplateResponse("register.html", context)
+
+
+@router.get("/login")
+async def login(request: Request):
+    context = {"request": request}
+    return templates.TemplateResponse("login.html", context)

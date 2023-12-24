@@ -1,4 +1,3 @@
-from fastapi import Depends, Form
 from pydantic import BaseModel
 
 class UserCreate(BaseModel):
@@ -7,3 +6,6 @@ class UserCreate(BaseModel):
     password: str
     confirm_password: str
 
+
+class TokenData(BaseModel):
+    username: str
