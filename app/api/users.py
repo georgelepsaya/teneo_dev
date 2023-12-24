@@ -4,7 +4,6 @@ from fastapi.templating import Jinja2Templates
 from ..database import get_db
 from .. import models, schemas, crud, utils
 from typing import List
-import json
 
 
 router = APIRouter()
@@ -50,6 +49,9 @@ async def create_user(request: Request,
         errors[
             "password"] = "Password must be at least 8 characters and include a mix of upper and lower case letters and numbers"
 
+    if len(tags) < 3:
+        errors["tags"] = "Select at least three tags"
+
     # If there are errors, return to the registration page with errors
     if errors:
         return templates.TemplateResponse("register.html", {"request": request,
@@ -61,8 +63,16 @@ async def create_user(request: Request,
     hashed_password = utils.hash_password(password)
     new_user = models.User(username=username, email=email, hashed_password=hashed_password)
     db.add(new_user)
+
+    # add interest tags to the user
+    for tag_id in tags:
+        tag = db.query(models.Tag).get(int(tag_id))
+        if tag:
+            new_user.tags.append(tag)
+
     db.commit()
     db.refresh(new_user)
+
     return new_user
 
 

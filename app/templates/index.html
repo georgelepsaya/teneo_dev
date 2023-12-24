@@ -6,31 +6,28 @@
 {% block content %}
 <main class="container mx-auto mt-8">
         <section class="text-center">
-            <h1 class="text-4xl font-bold">Welcome to <span class="text-purple-700">Teneo</span></h1>
+            <h1 class="text-4xl font-semibold">Welcome to <span style="font-family: 'K2D', sans-serif; color: #7b26c8;" id="teneo-title">Teneo</span></h1>
             <p class="mt-4 text-2xl text-gray-600">Achieve Goals with likeminded people</p>
         </section>
         <section class="mt-16">
-            <h2 class="text-2xl font-semibold text-center">3 Simple Steps</h2>
+            <h2 class="text-2xl font-semibold text-center">Three Steps</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
                 <!-- Step 1 -->
-                <div class="bg-white rounded-lg p-4 shadow-md hover:outline-2 hover:outline-purple-600 hover:outline">
+                <div class="bg-white rounded-lg p-6 shadow-md hover:outline-2 hover:outline-purple-600 hover:outline">
                     <img src="{{ url_for('static', path='/images/register.svg') }}" alt="Step 1 - Register" class="w-48 h-48 mx-auto mb-4">
-                    <h3 class="text-xl text-center font-semibold">Register and share your interests</h3>
-                    <p class="text-center text-gray-600 mt-2">Register on Teneo and let other users know what your interests are.</p>
+                    <h3 class="mt-2 text-xl text-center font-semibold">Register and share your interests</h3>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="bg-white rounded-lg p-4 shadow-md hover:outline-2 hover:outline-purple-600 hover:outline">
+                <div class="bg-white rounded-lg p-6 shadow-md hover:outline-2 hover:outline-purple-600 hover:outline">
                     <img src="{{ url_for('static', path='/images/goal.svg') }}" alt="Step 2 - Set Goal" class="w-48 h-48 mx-auto mb-4">
-                    <h3 class="text-xl text-center font-semibold">Create Goals</h3>
-                    <p class="text-center text-gray-600 mt-2">Set Goals and track your progress in achieving them.</p>
+                    <h3 class="mt-2 text-xl text-center font-semibold">Create Goals</h3>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="bg-white rounded-lg p-4 shadow-md hover:outline-2 hover:outline-purple-600 hover:outline">
+                <div class="bg-white rounded-lg p-6 shadow-md hover:outline-2 hover:outline-purple-600 hover:outline">
                     <img src="{{ url_for('static', path='/images/connect.svg') }}" alt="Step 3 - Connect" class="w-48 h-48 mx-auto mb-4">
-                    <h3 class="text-xl text-center font-semibold">Connect with people</h3>
-                    <p class="text-center text-gray-600 mt-2">Find likeminded users based on your interests and goals.</p>
+                    <h3 class="mt-2 text-xl text-center font-semibold">Connect with people</h3>
                 </div>
             </div>
         </section>
