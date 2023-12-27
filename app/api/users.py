@@ -19,6 +19,14 @@ async def get_users(request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse("users.html", context)
 
 
+@router.get("/users/{username}")
+async def get_user(request: Request, username: str, db: Session = Depends(get_db)):
+    user = crud.get_user_by_username(db, username)
+    user_tags = crud.get_user_tags(db, username)
+    context = {"request": request, "user": user, "user_tags": user_tags}
+    return templates.TemplateResponse("user_profile.html", context)
+
+
 @router.post("/register")
 async def create_user(request: Request,
                       username: str = Form(...),
